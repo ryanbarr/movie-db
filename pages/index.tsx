@@ -1,5 +1,7 @@
+import MovieList from "../components/MovieList";
+
 function Index() {
-  return <div>Movie List</div>
+  return <MovieList />
 }
 
 export default Index;
