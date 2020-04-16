@@ -1,0 +1,19 @@
+{
+  "name": "movie-db",
+  "version": "1.0.0",
+  "description": "The 2016 Popular Movie List",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanbarr/movie-db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanbarr/movie-db/issues"
+  },
+  "homepage": "https://github.com/ryanbarr/movie-db#readme"
+}
