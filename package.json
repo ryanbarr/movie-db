@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ryanbarr/movie-db#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "next": "^9.3.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
