@@ -5,7 +5,11 @@ type ScoreProps = {
 };
 
 const Score = ({ score }: ScoreProps) => {
-  return <div className={styles.score}>{score}%</div>;
+  return (
+    <div style={{ display: "inline-block" }}>
+      <div className={styles.score}>{Math.trunc(score)}</div>
+    </div>
+  );
 }
 
 export default Score;
