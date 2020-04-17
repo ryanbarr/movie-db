@@ -1,4 +1,3 @@
-import styles from "../components/MovieItem.module.css";
 import Link from "next/link";
 import {
   Col,
@@ -6,6 +5,8 @@ import {
   ListGroup,
   Row
 } from "react-bootstrap";
+
+import Score from "../components/Score";
 
 function MovieItem() {
   return (
@@ -22,7 +23,7 @@ function MovieItem() {
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
-          <div className={styles.score}>60%</div>
+          <Score score={61} />
         </Col>
       </Row>
     </ListGroup.Item>
