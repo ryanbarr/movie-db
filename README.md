@@ -6,12 +6,9 @@ This is a demo application to showcase React (via Next.js).
 # Notes
 1. Next.js was chosen over vanilla React to avoid the tedious configuration tasks you don't normally encounter in daily development.
 1. Some custom configurations were added to showcase common React environment implementations--such as Bootstrap and dotenv.
-1. TypeScript is used to help enforce typings and schemas. For efficiency and time, no particular "best practice" was utilized such as declaring interfaces or typings in separate files.
+1. TypeScript is used to help enforce typings and schemas.
 1. The Movie DB (TMDB) utilizes a [Popularity Metric](https://developers.themoviedb.org/3/getting-started/popularity) which is not respected in their own sort.
     * For example, visiting [their movie search](https://www.themoviedb.org/movie) and sorting by "Popularity Descending" and filtering to the date range of 01-01-2016 to 12-31-2016 yields identical results to those in this application, even though the "Popularity Score" is not used as the sorting base.
-1. Project requirements only requested the use of TMDB's [Discover API](https://developers.themoviedb.org/3/discover/movie-discover). To recreate real world scenarios I've experienced, this project also utilizes the [Movie API](https://developers.themoviedb.org/3/movies/get-movie-details).
-    * Utilizing both allows for better demonstration `getStaticProps` vs `getStaticPaths` and the value of Server-side Rendering (SSR).
-    * An interesting side-effect from using both endpoints: it seems TMDB utilizes results caching to improve performance on their end. This can sometimes be demonstrated by influencing their Popularity Metric; visiting movie pages on their website repeatedly has a chance to change the Popularity Score.
 1. As mentioned above, a production deployment of this project exists which is automatically built and deployed with changes to `master` (but can also be built and deployed manually). You can recreate this deployment process by following the steps below.
 
 # Development Environment
@@ -31,9 +28,9 @@ Run the development environment which features Hot Module Replacement (HMR) and 
 
 ```npm run dev```
 
-You may also choose to run the application without HMR and developer tools:
+You may also choose to run the application as if it were a production build:
 
-```npm run start```
+```npm run build && npm run start```
 
 # Production Build
 To create an optimized production build, run:

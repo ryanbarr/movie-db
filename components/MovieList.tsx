@@ -1,5 +1,6 @@
 import { ListGroup } from "react-bootstrap";
-import MovieItem, { MovieInterface } from "../components/MovieItem";
+import MovieItem from "../components/MovieItem";
+import { MovieInterface } from "../store/movie/types";
 
 type MovieListProps = {
   movies: MovieInterface[];
@@ -8,7 +9,7 @@ type MovieListProps = {
 function MovieList({ movies }: MovieListProps) {
   return (
     <ListGroup variant="flush">
-      {movies.map((movie, key) => ( <MovieItem key={key} movie={movie} /> ))}
+      {(movies) ? movies.map((movie, key) => ( <MovieItem key={key} movie={movie} /> )) : null}
     </ListGroup>
   );
 }

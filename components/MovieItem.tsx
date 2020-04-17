@@ -7,23 +7,7 @@ import {
 } from "react-bootstrap";
 
 import Score from "../components/Score";
-
-export interface MovieInterface {
-  adult: boolean;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  backdrop_path?: string;
-  poster_path?: string;
-};
+import { MovieInterface } from "../store/movie/types";
 
 type MovieItemProps = {
   movie: MovieInterface;
@@ -40,7 +24,7 @@ function MovieItem({ movie }: MovieItemProps) {
         <Col sm={8}>
           <div>{movie.release_date}</div>
           <div>
-            <Link href={`/movie/${movie.id}`}><a>Details</a></Link>
+            <Link href="/movie/[id]" as={`/movie/${movie.id}`}><a>Details</a></Link>
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
