@@ -1,11 +1,13 @@
 import fetch from "node-fetch";
 
-import MovieList from "../components/MovieList";
 import { Container } from "react-bootstrap";
+
+import MovieList from "../components/MovieList";
+import { MovieInterface } from "../components/MovieItem";
 
 export interface MovieResults {
   page: number;
-  results: Array<Object>;
+  results: MovieInterface[];
   total_pages: number;
   total_results: number;
 }
