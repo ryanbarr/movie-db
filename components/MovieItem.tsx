@@ -44,7 +44,7 @@ function MovieItem({ movie }: MovieItemProps) {
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
-          <Score score={movie.vote_average} />
+          <Score score={movie.popularity} />
         </Col>
       </Row>
     </ListGroup.Item>
