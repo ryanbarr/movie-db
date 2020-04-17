@@ -10,26 +10,10 @@ import {
 } from "react-bootstrap";
 
 import Score from "../../components/Score";
+import { MovieInterface } from "../../components/MovieItem";
 import { GetStaticProps, GetStaticPaths } from "next";
 
-export interface MovieDetailInterface {
-  adult: boolean;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-  backdrop_path?: string;
-  poster_path?: string;
-};
-
-function MovieDetail(movie: MovieDetailInterface) {
+function MovieDetail(movie: MovieInterface) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -65,12 +49,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`http://api.themoviedb.org/3/discover/movie?api_key=${filters.key}&year=${filters.year}&sort_by=${filters.sort_by}`);
   const { results: movies } = await response.json();
 
-  const paths = movies.map(movie => `/movie/${movie.id}`);
+  const paths = movies.map((movie: MovieInterface) => `/movie/${movie.id}`);
   
   return { paths, fallback: false };
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  // Handle any context where a parameter was not passed in.
+  if (!context.params) return { props: {} };
+
   const response = await fetch(`http://api.themoviedb.org/3/movie/${context.params.id}?api_key=${process.env.MOVIEDB_KEY}`);
   const data = await response.json();
 
