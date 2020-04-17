@@ -8,7 +8,15 @@ import {
 
 import Score from "../components/Score";
 
-function MovieItem() {
+export interface MovieInterface {
+
+};
+
+type MovieItemProps = {
+  movie: MovieInterface;
+};
+
+function MovieItem({ movie }: MovieItemProps) {
   return (
     <ListGroup.Item>
       <h2>The Simpsons</h2>
