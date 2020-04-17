@@ -1,7 +1,6 @@
 import styles from "../components/MovieItem.module.css";
-
+import Link from "next/link";
 import {
-  Button,
   Col,
   Image,
   ListGroup,
@@ -19,7 +18,7 @@ function MovieItem() {
         <Col sm={8}>
           <div>01/01/2001</div>
           <div>
-            <Button>Details</Button>
+            <Link href="/movie/1">Details</Link>
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
