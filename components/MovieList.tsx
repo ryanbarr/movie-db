@@ -1,10 +1,14 @@
 import { ListGroup } from "react-bootstrap";
-import MovieItem from "../components/MovieItem";
+import MovieItem, { MovieInterface } from "../components/MovieItem";
 
-function MovieList() {
+type MovieListProps = {
+  movies: MovieInterface[];
+};
+
+function MovieList({ movies }: MovieListProps) {
   return (
     <ListGroup variant="flush">
-      {[,2,3,4].map((v, i) => ( <MovieItem key={i} /> ))}
+      {movies.map((movie, key) => ( <MovieItem key={key} movie={movie} /> ))}
     </ListGroup>
   );
 }

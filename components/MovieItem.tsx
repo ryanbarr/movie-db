@@ -8,22 +8,43 @@ import {
 
 import Score from "../components/Score";
 
-function MovieItem() {
+export interface MovieInterface {
+  adult: boolean;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  backdrop_path?: string;
+  poster_path?: string;
+};
+
+type MovieItemProps = {
+  movie: MovieInterface;
+};
+
+function MovieItem({ movie }: MovieItemProps) {
   return (
     <ListGroup.Item>
-      <h2>The Simpsons</h2>
+      <h2>{movie.title}</h2>
       <Row>
         <Col sm={2}>
-          <Image src="https://image.tmdb.org/t/p/w1280/qcr9bBY6MVeLzriKCmJOv1562uY.jpg" alt="The Simpsons" thumbnail fluid />
+          <Image src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} alt={movie.title} thumbnail fluid />
         </Col>
         <Col sm={8}>
-          <div>01/01/2001</div>
+          <div>{movie.release_date}</div>
           <div>
-            <Link href="/movie/1">Details</Link>
+            <Link href={`/movie/${movie.id}`}>Details</Link>
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
-          <Score score={61} />
+          <Score score={movie.vote_average} />
         </Col>
       </Row>
     </ListGroup.Item>
