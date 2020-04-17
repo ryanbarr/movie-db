@@ -1,0 +1,8 @@
+.score {
+  background: #6D8398;
+  color: #fff;
+  display: inline-block;
+  padding: 20px 15px;
+  font-weight: bold;
+  border-radius: 100%;
+}
