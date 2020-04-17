@@ -16,7 +16,7 @@ function MovieDetail() {
   return (
     <Container>
       <h1>The Simpsons</h1>
-      <Link href="/">Close</Link>
+      <Link href="/"><a>Close</a></Link>
       <Row>
         <Col sm={4}>
           <Image src="https://image.tmdb.org/t/p/w1280/qcr9bBY6MVeLzriKCmJOv1562uY.jpg" alt="The Simpsons" thumbnail fluid />

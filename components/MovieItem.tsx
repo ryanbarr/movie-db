@@ -40,7 +40,7 @@ function MovieItem({ movie }: MovieItemProps) {
         <Col sm={8}>
           <div>{movie.release_date}</div>
           <div>
-            <Link href={`/movie/${movie.id}`}>Details</Link>
+            <Link href={`/movie/${movie.id}`}><a>Details</a></Link>
           </div>
         </Col>
         <Col sm={2} style={{ textAlign: "right" }}>
