@@ -48,8 +48,8 @@ This project works with ZEIT Now. If you'd like to test deploying to ZEIT, do so
 1. Import a project and select the forked repository.
 1. Add Environment Variables in the Project > Settings section which match the .env configuration.
 1. Add custom Build and Development commands:
-  * Build: `npm run build`
-  * Development: `npm run dev --port $PORT`
+    * Build: `npm run build`
+    * Development: `npm run dev --port $PORT`
 1. Install `now` on your local environment using `npm i -g now`.
 1. Run `now` to create a remote development environment and a preview build.
 1. Run `now --prod` to deploy the preview build from the previous step to your production environment.
