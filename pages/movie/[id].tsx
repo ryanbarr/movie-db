@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 import { useRouter } from "next/router";
 import Link from "next/link";
 import {
@@ -8,31 +10,71 @@ import {
 } from "react-bootstrap";
 
 import Score from "../../components/Score";
+import { GetStaticProps, GetStaticPaths } from "next";
 
-function MovieDetail() {
+export interface MovieDetailInterface {
+  adult: boolean;
+  genre_ids: number[];
+  id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  release_date: string;
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  backdrop_path?: string;
+  poster_path?: string;
+};
+
+function MovieDetail(movie: MovieDetailInterface) {
   const router = useRouter();
   const { id } = router.query;
 
   return (
     <Container>
-      <h1>The Simpsons</h1>
+      <h1>{movie.title}</h1>
       <Link href="/"><a>Close</a></Link>
       <Row>
         <Col sm={4}>
-          <Image src="https://image.tmdb.org/t/p/w1280/qcr9bBY6MVeLzriKCmJOv1562uY.jpg" alt="The Simpsons" thumbnail fluid />
+          <Image src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} alt={movie.title} thumbnail fluid />
         </Col>
         <Col sm={8}>
           <div>
-            <Score score={62} />
+            <Score score={movie.popularity} />
           </div>
           <div>
-            01/01/2001
+            {movie.release_date}
           </div>
         </Col>
       </Row>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus urna venenatis ex hendrerit, pellentesque vehicula urna tincidunt. Pellentesque nec consectetur leo, eget interdum purus. Nulla at suscipit magna. In varius felis vitae odio posuere, at mollis lectus vehicula. Nam at lacus ac nibh scelerisque mollis. Mauris justo lectus, suscipit ac magna sit amet, imperdiet pharetra elit. Proin neque mi, feugiat quis tempus ac, maximus a felis. Nam id sollicitudin velit. Fusce pharetra nulla lorem, eu interdum neque pretium non.</p>
+      <p>{movie.overview}</p>
     </Container>
   );
 }
+
+// Declaring getStaticPaths() allows us to pre-render all required movie pages at build time to improve application performance.
+export const getStaticPaths: GetStaticPaths = async () => {
+  const filters = {
+    key: process.env.MOVIEDB_KEY,
+    year: 2016,
+    sort_by: "popularity.desc"
+  };
+  const response = await fetch(`http://api.themoviedb.org/3/discover/movie?api_key=${filters.key}&year=${filters.year}&sort_by=${filters.sort_by}`);
+  const { results: movies } = await response.json();
+
+  const paths = movies.map(movie => `/movie/${movie.id}`);
+  
+  return { paths, fallback: false };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const response = await fetch(`http://api.themoviedb.org/3/movie/${context.params.id}?api_key=${process.env.MOVIEDB_KEY}`);
+  const data = await response.json();
+
+  return { props: data };
+} 
 
 export default MovieDetail;
