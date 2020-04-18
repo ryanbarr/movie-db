@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./_app.css";
 
 import { AppProps } from "next/app";
 import { createStore, applyMiddleware } from "redux";

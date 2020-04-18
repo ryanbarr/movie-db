@@ -2,18 +2,20 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { withRouter } from "next/router";
-import Link from "next/link";
 import {
   Button,
+  Card,
   Col,
   Container,
   Image,
-  Row,
+  Row
 } from "react-bootstrap";
-
 import Score from "../../components/Score";
+import Spinner from "../../components/Spinner";
+
 import { MovieDispatch, fetchMovies, toggleFavorite } from "../../store/movie/actions";
 import { MovieState, MovieInterface } from "../../store/movie/types";
+import Header from "../../components/Header";
 
 interface MovieDetailState extends MovieState {
   movie: MovieInterface;
@@ -56,34 +58,40 @@ class MovieDetail extends React.Component<MovieDetailProps, MovieDetailState> {
   render() {
     const { movie } = this.props;
     
-    if (!movie) return null;
+    if (!movie) return <Spinner />;
 
     return (
-      <Container>
-        <h1>{movie.title}</h1>
-        <Link href="/" as="/"><a>Close</a></Link>
-        <Row>
-          <Col sm={4}>
-            <Image src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} alt={movie.title} thumbnail fluid />
-          </Col>
-          <Col sm={8}>
-            <Row>
-              <Col sm={6}>
-                <Score score={movie.popularity} />
-              </Col>
-              <Col sm={6}>
-                <Button onClick={() => this.handleFavorite(movie)}>
-                  {(movie.favorite) ? "Unfavorite" : "Favorite"}
-                </Button>
-              </Col>
-            </Row>
-            <div>
-              {movie.release_date}
-            </div>
-          </Col>
-        </Row>
-        <p>{movie.overview}</p>
-      </Container>
+      <>
+        <Header title={movie.title} closeable />
+        <Container>
+          <Row>
+            <Col xs={5}>
+              <Image src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} alt={movie.title} thumbnail fluid />
+            </Col>
+            <Col>
+              <Row>
+                <Col xs={5}>
+                  <Score score={movie.popularity} />
+                </Col>
+                <Col style={{ textAlign: "right" }}>
+                  <Button onClick={() => this.handleFavorite(movie)} variant={(movie.favorite) ? "warning" : "primary"}>
+                    {(movie.favorite) ? "Unfavorite" : "Favorite"}
+                  </Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <strong>Released:</strong>{' '}
+                  <span>{movie.release_date}</span>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Card style={{ marginTop: "10px" }}>
+            <Card.Body>{movie.overview}</Card.Body>
+          </Card>
+        </Container>
+      </>
     );
   }
 }

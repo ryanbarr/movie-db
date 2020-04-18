@@ -1,5 +1,8 @@
+import styles from "./MovieItem.module.css";
+
 import Link from "next/link";
 import {
+  Button,
   Col,
   Image,
   ListGroup,
@@ -16,19 +19,28 @@ type MovieItemProps = {
 function MovieItem({ movie }: MovieItemProps) {
   return (
     <ListGroup.Item>
-      <h2>{movie.title}</h2>
+      <h2 className={styles.title}>{movie.title}</h2>
       <Row>
-        <Col sm={2}>
+        <Col xs={4}>
           <Image src={`https://image.tmdb.org/t/p/w1280/${movie.poster_path}`} alt={movie.title} thumbnail fluid />
         </Col>
-        <Col sm={8}>
-          <div>{movie.release_date}</div>
-          <div>
-            <Link href="/movie/[id]" as={`/movie/${movie.id}`}><a>Details</a></Link>
-          </div>
-        </Col>
-        <Col sm={2} style={{ textAlign: "right" }}>
-          <Score score={movie.popularity} />
+        <Col>
+          <Row>
+            <Col>
+              <strong>Released:</strong>{' '}
+              <span>{movie.release_date}</span>
+            </Col>
+            <Col style={{ textAlign: "right" }}>
+              <Score score={movie.popularity} />
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <Link href="/movie/[id]" as={`/movie/${movie.id}`}>
+                <Button>Details</Button>
+              </Link>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </ListGroup.Item>
