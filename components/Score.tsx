@@ -1,4 +1,4 @@
-import styles from "../components/Score.module.css";
+import styles from "./Score.module.css";
 
 type ScoreProps = {
   score: number
