@@ -35,12 +35,13 @@ class MovieDetail extends React.Component<MovieDetailProps, MovieDetailState> {
       results: props.results
     };
   }
+
   componentDidMount() {
     // If we don't already have movies, let's get them.
     if (!this.props.movie) this.props.fetchMovies();
   }
 
-  componentWillReceiveProps(nextProps: MovieDetailProps) {
+  componentDidUpdate(nextProps: MovieDetailProps) {
     if (this.props.results !== nextProps.results) {
       this.setState({
         movie: nextProps.movie
