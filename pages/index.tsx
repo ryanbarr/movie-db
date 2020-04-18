@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import MovieList from "../components/MovieList";
 import { MovieState } from "../store/movie/types";
 import { fetchMovies, MovieDispatch } from "../store/movie/actions";
+import { AppStateInterface } from "../store";
 
 interface IndexProps extends MovieState {
   fetchMovies: () => Promise<boolean>;
@@ -33,7 +34,7 @@ class Index extends React.Component<IndexProps, MovieState> {
 };
 
 // Map the current state to the component's props.
-const mapStateToProps = (state: any) => state.movies;
+const mapStateToProps = (state: AppStateInterface) => state.movies;
 
 const mapDispatchToProps = (dispatch: MovieDispatch) => ({
   fetchMovies: () => dispatch(fetchMovies())
