@@ -36,7 +36,7 @@ export const fetchMovies = (): MovieResult<Promise<boolean>> => {
     dispatch(requestMovies());
 
     // Grab the API data.
-    return fetch(`http://api.themoviedb.org/3/discover/movie?api_key=${filters.key}&year=${filters.year}&sort_by=${filters.sort_by}`)
+    return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${filters.key}&year=${filters.year}&sort_by=${filters.sort_by}`)
       .then(response => response.json())
       .then(data => {
         dispatch(addMovies(data.results));
